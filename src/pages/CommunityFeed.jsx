@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Send, Heart, MessageCircle, Share2, MoreHorizontal, Pin } from 'lucide-react';
+import { ArrowLeft, Send, Heart, MessageCircle, Share2, Pin } from 'lucide-react';
 
 const SAMPLE_USERS = [
   'Rahul M.', 'Priya S.', 'Amit K.', 'Sneha R.', 'Vikram P.',
@@ -77,7 +77,7 @@ const generatePosts = (communityName, topics = []) => {
 };
 
 export default function CommunityFeed() {
-  const { communityId } = useParams();
+  useParams();
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem('mohalla_user') || '{}');
   const messagesEndRef = useRef(null);
@@ -99,7 +99,6 @@ export default function CommunityFeed() {
   const [newMessage, setNewMessage] = useState('');
 
   useEffect(() => {
-    // Load community data from localStorage
     const saved = localStorage.getItem('mohalla_current_community');
     if (saved) {
       const c = JSON.parse(saved);
@@ -108,7 +107,7 @@ export default function CommunityFeed() {
     } else {
       navigate('/home');
     }
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });

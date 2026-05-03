@@ -86,7 +86,8 @@ export default function Home() {
     JSON.parse(localStorage.getItem('mohalla_joined') || '[]')
   );
 
-  useEffect(() => { loadCommunities(); }, []);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+useEffect(() => { loadCommunities(); }, []);
 
   const loadCommunities = async () => {
     const result = await generateLocalCommunities(user);

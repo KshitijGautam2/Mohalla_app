@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Search, MapPin, Store, ChevronRight, Star, Package, ArrowLeft } from 'lucide-react';
+import { Search, MapPin, ChevronRight, Star, Package, ArrowLeft } from 'lucide-react';
 import Navbar from '../components/Navbar';
 
 const SHOPS = [
