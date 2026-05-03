@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import Onboarding from './pages/Onboarding';
+import Home from './pages/Home';
+import CommunityFeed from './pages/CommunityFeed';
+import Marketplace from './pages/Marketplace';
+import Profile from './pages/Profile';
+import MyCommunities from './pages/MyCommunities';
 
 function App() {
+  const isOnboarded = localStorage.getItem('mohalla_user');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="min-h-screen bg-gray-50">
+        <Routes>
+          <Route path="/" element={isOnboarded ? <Navigate to="/home" /> : <Navigate to="/onboarding" />} />
+          <Route path="/onboarding" element={<Onboarding />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/community/:communityId" element={<CommunityFeed />} />
+          <Route path="/marketplace" element={<Marketplace />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/communities" element={<MyCommunities />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
